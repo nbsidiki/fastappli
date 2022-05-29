@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Tuto WebSocket avec Socket.io et NodeJS par PracticalProgramming.fr</title>
+</head>
+
+<body>
+    <h2>Ecrans II</h2>
+  <H1>Liste des commandes</H1>
+  <ul id="list">
+   
+  </ul>
+   
+  <!-- CREATION SOCKET -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+    let numéroDecommande = 0;
+    socket.on('news', function(msg) {
+      numéroDecommande = numéroDecommande + 1;
+      console.log(msg);
+      const list = document.getElementById('list');
+      const li = document.createElement('li');
+      li.textContent = 'Numéro '+ numéroDecommande+' : ' + msg;
+      list.appendChild(li);
+    });
+    
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: beige;
+    }
+    #list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    #list li {
+      margin: 0;
+      padding: 0;
+      border-bottom: 1px solid #ccc;
+    }
+    h2 {
+      text-align: center;
+    }
+    h1 {
+      text-align: center;
+    }
+
+  </style>
+
+  <!-- FIN CODE SOCKET -->
+</body>
+</html>
